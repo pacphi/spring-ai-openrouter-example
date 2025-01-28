@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.cyclonedx.bom' version '2.0.0'
+	id 'com.gorylenko.gradle-git-properties' version '2.4.2'
+	id 'org.springframework.boot' version '3.4.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springdoc.openapi-gradle-plugin' version '1.9.0'
+}
+
+group = 'me.pacphi'
+
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://packages.atlassian.com/repository/public' }
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+ext {
+	set('springAiVersion', "1.0.0-M5")
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	implementation('org.springframework.boot:spring-boot-starter-validation')
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
+	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-actuator:1.0.7'
+	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-resilience4j:1.0.7'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.3'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.assertj:assertj-core:3.27.3'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+	}
+}
+
+bootRun {
+    systemProperties System.properties
+}
