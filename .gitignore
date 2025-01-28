@@ -43,7 +43,7 @@ out/
 ### Miscellaneous ###
 data/
 tmp/
-config/
+**/creds*.yml
 logs/
 
 
