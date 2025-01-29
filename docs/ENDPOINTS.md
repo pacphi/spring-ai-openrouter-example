@@ -4,7 +4,7 @@
 
 ### Chat
 
-CChat with a bot.  Ask a question, get a response.
+Chat with a bot.  Ask a question, get a response.
 
 ```python
 POST /api/chat
