@@ -9,9 +9,8 @@ public record MultiChatResponse(
         String content,
         boolean success,
         String errorMessage,
-        Long promptTokens,
-        Long generationTokens,
-        Long totalTokens,
+        Integer promptTokens,
+        Integer totalTokens,
         String responseTime
 ) {
     private static String getFormattedResponseTime(long responseTimeMillis) {
@@ -33,10 +32,10 @@ public record MultiChatResponse(
     }
 
     public static MultiChatResponse success(String model, String response, Usage usage, long responseTime) {
-        return new MultiChatResponse(model, response, true, null, usage.getPromptTokens(), usage.getGenerationTokens(), usage.getTotalTokens(), getFormattedResponseTime(responseTime));
+        return new MultiChatResponse(model, response, true, null, usage.getPromptTokens(), usage.getTotalTokens(), getFormattedResponseTime(responseTime));
     }
 
     public static MultiChatResponse failure(String model, String error) {
-        return new MultiChatResponse(model, null, false, error, null, null, null, null);
+        return new MultiChatResponse(model, null, false, error, null, null, null);
     }
 }

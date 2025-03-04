@@ -60,7 +60,7 @@ public class MultiChatService {
                                 usage = chatResponse.getMetadata().getUsage();
                             }
                             if (chatResponse.getResult() != null) {
-                                response = chatResponse.getResult().getOutput().getContent();
+                                response = chatResponse.getResult().getOutput().getText();
                             }
                         }
                         if (usage == null) {
