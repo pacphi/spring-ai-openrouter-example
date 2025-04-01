@@ -44,7 +44,7 @@ Transfer-Encoding: chunked
     {
         "content": "Sure! Here's a random joke for you:\n\nWhy don't skeletons fight each other?  \nBecause they don’t have the guts! 😄",
         "errorMessage": null,
-        "generationTokens": 29,
+        "completionTokens": 29,
         "modelName": "openai/gpt-4o-2024-11-20",
         "promptTokens": 12,
         "responseTime": "1s893ms",
@@ -54,7 +54,7 @@ Transfer-Encoding: chunked
     {
         "content": "What do you call a fish wearing a bowtie? So-fish-ticated!",
         "errorMessage": null,
-        "generationTokens": 0,
+        "completionTokens": 0,
         "modelName": "anthracite-org/magnum-v2-72b",
         "promptTokens": 0,
         "responseTime": "1s49ms",
@@ -64,7 +64,7 @@ Transfer-Encoding: chunked
     {
         "content": "Why don't scientists trust atoms? Because they make up everything.",
         "errorMessage": null,
-        "generationTokens": 14,
+        "completionTokens": 14,
         "modelName": "qwen/qvq-72b-preview",
         "promptTokens": 41,
         "responseTime": "913ms",
@@ -74,7 +74,7 @@ Transfer-Encoding: chunked
     {
         "content": "Why don't eggs tell jokes? They'd crack each other up!",
         "errorMessage": null,
-        "generationTokens": 15,
+        "completionTokens": 15,
         "modelName": "x-ai/grok-2-1212",
         "promptTokens": 11,
         "responseTime": "666ms",
@@ -84,7 +84,7 @@ Transfer-Encoding: chunked
     {
         "content": "Here's a random joke for you:\n\nWhy don't scientists trust atoms?\n\nBecause they make up everything!",
         "errorMessage": null,
-        "generationTokens": 27,
+        "completionTokens": 27,
         "modelName": "anthropic/claude-3.5-haiku-20241022",
         "promptTokens": 12,
         "responseTime": "1s390ms",
@@ -94,7 +94,7 @@ Transfer-Encoding: chunked
     {
         "content": "Here's a random joke for you:\n\n**Why don't sharks eat clowns?**\n\nBecause they taste funny![1]",
         "errorMessage": null,
-        "generationTokens": 25,
+        "completionTokens": 25,
         "modelName": "perplexity/llama-3.1-sonar-huge-128k-online",
         "promptTokens": 5,
         "responseTime": "3s108ms",
@@ -104,7 +104,7 @@ Transfer-Encoding: chunked
     {
         "content": "Here's one:\n\nWhat do you call a fake noodle?\n\nAn impasta!",
         "errorMessage": null,
-        "generationTokens": 17,
+        "completionTokens": 17,
         "modelName": "meta-llama/llama-3.3-70b-instruct",
         "promptTokens": 15,
         "responseTime": "1s703ms",
@@ -114,7 +114,7 @@ Transfer-Encoding: chunked
     {
         "content": "What do you call fake spaghetti? An impasta",
         "errorMessage": null,
-        "generationTokens": 13,
+        "completionTokens": 13,
         "modelName": "mistralai/mistral-large-2411",
         "promptTokens": 8,
         "responseTime": "725ms",
@@ -124,7 +124,7 @@ Transfer-Encoding: chunked
     {
         "content": " Why did the chicken cross the playground? To get to the other slide!",
         "errorMessage": null,
-        "generationTokens": 15,
+        "completionTokens": 15,
         "modelName": "pygmalionai/mythalion-13b",
         "promptTokens": 30,
         "responseTime": "5s288ms",
@@ -134,7 +134,7 @@ Transfer-Encoding: chunked
     {
         "content": "Sure! Here’s a random joke for you:\n\nWhy don’t skeletons fight each other?  \nBecause they don’t have the guts! 💀😂",
         "errorMessage": null,
-        "generationTokens": 34,
+        "completionTokens": 34,
         "modelName": "deepseek/deepseek-chat",
         "promptTokens": 8,
         "responseTime": "4s477ms",
@@ -144,7 +144,7 @@ Transfer-Encoding: chunked
     {
         "content": "Okay, here's a random one:\n\nWhy don't scientists trust atoms? \n\nBecause they make up everything!\n",
         "errorMessage": null,
-        "generationTokens": 27,
+        "completionTokens": 27,
         "modelName": "google/gemini-2.0-flash-exp:free",
         "promptTokens": 6,
         "responseTime": "1s94ms",
@@ -154,7 +154,7 @@ Transfer-Encoding: chunked
     {
         "content": "Of course! Here's a light-hearted joke for you:\n\nWhy did the scarecrow win an award?\n\nBecause he was outstanding in his field! \n\nHope that brought a smile to your face!",
         "errorMessage": null,
-        "generationTokens": 41,
+        "completionTokens": 41,
         "modelName": "amazon/nova-pro-v1",
         "promptTokens": 5,
         "responseTime": "1s83ms",

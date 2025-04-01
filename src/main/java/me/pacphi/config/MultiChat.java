@@ -2,11 +2,11 @@ package me.pacphi.config;
 
 import io.micrometer.observation.ObservationRegistry;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.ai.autoconfigure.openai.OpenAiChatProperties;
-import org.springframework.ai.autoconfigure.openai.OpenAiConnectionProperties;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.model.SimpleApiKey;
+import org.springframework.ai.model.openai.autoconfigure.OpenAiChatProperties;
+import org.springframework.ai.model.openai.autoconfigure.OpenAiConnectionProperties;
 import org.springframework.ai.model.tool.DefaultToolCallingManager;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
@@ -59,23 +59,23 @@ public class MultiChat {
 
         return multiChatProperties.getOptions().getModels().stream().collect(
                 Collectors.toMap(
-                    model -> model,
-                    model -> {
-                        OpenAiChatOptions chatOptions = OpenAiChatOptions.fromOptions(chatProperties.getOptions());
-                        chatOptions.setModel(model);
-                        OpenAiChatModel openAiChatModel = new OpenAiChatModel(
-                                openAiApi,
-                                chatProperties.getOptions(),
-                                DefaultToolCallingManager.builder().observationRegistry(observationRegistry).build(),
-                                retryTemplate,
-                                observationRegistry
-                        );
-                        // Create ChatClient with similar configuration to original service
-                        return ChatClient.builder(openAiChatModel)
-                                .defaultAdvisors(
-                                        new SimpleLoggerAdvisor())
-                                .build();
-                    }
+                        model -> model,
+                        model -> {
+                            OpenAiChatOptions chatOptions = OpenAiChatOptions.fromOptions(chatProperties.getOptions());
+                            chatOptions.setModel(model);
+                            OpenAiChatModel openAiChatModel = new OpenAiChatModel(
+                                    openAiApi,
+                                    chatOptions,
+                                    DefaultToolCallingManager.builder().observationRegistry(observationRegistry).build(),
+                                    retryTemplate,
+                                    observationRegistry
+                            );
+                            // Create ChatClient with similar configuration to original service
+                            return ChatClient.builder(openAiChatModel)
+                                    .defaultAdvisors(
+                                            new SimpleLoggerAdvisor())
+                                    .build();
+                        }
                 )
         );
     }

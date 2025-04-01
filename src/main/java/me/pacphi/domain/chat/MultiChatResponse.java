@@ -10,6 +10,7 @@ public record MultiChatResponse(
         boolean success,
         String errorMessage,
         Integer promptTokens,
+        Integer completionTokens,
         Integer totalTokens,
         String responseTime
 ) {
@@ -32,10 +33,10 @@ public record MultiChatResponse(
     }
 
     public static MultiChatResponse success(String model, String response, Usage usage, long responseTime) {
-        return new MultiChatResponse(model, response, true, null, usage.getPromptTokens(), usage.getTotalTokens(), getFormattedResponseTime(responseTime));
+        return new MultiChatResponse(model, response, true, null, usage.getPromptTokens(), usage.getCompletionTokens(), usage.getTotalTokens(), getFormattedResponseTime(responseTime));
     }
 
     public static MultiChatResponse failure(String model, String error) {
-        return new MultiChatResponse(model, null, false, error, null, null, null);
+        return new MultiChatResponse(model, null, false, error, null, null, null, null);
     }
 }
