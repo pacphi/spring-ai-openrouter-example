@@ -29,8 +29,8 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-validation')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.ai:spring-ai-starter-model-openai'
-	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-actuator:1.2.0'
-	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-resilience4j:1.2.0'
+	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-actuator:1.2.1'
+	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-resilience4j:1.2.1'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.assertj:assertj-core:3.27.4'
