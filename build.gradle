@@ -43,6 +43,10 @@ dependencyManagement {
 	}
 }
 
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
 bootRun {
     systemProperties System.properties
 }

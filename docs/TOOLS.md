@@ -3,7 +3,7 @@
 ## Tools
 
 * [sdkman](https://sdkman.io) 5.8.12 or better
-* [Gradle](https://docs.gradle.org/current/userguide/installation.html) 8.10 or better
+* [Gradle](https://docs.gradle.org/current/userguide/installation.html) 9.1.0 or better
 * [JDK](http://openjdk.java.net/install/) 21 or better
 * [git](https://git-scm.com/downloads) 2.40.0 or better
 * [gh](https://github.com/cli/cli) 2.42.0 or better
