@@ -36,73 +36,33 @@ POST /api/multichat
 HTTP/1.1 200 
 Connection: keep-alive
 Content-Type: application/json
-Date: Thu, 05 Dec 2024 17:44:04 GMT
+Date: Mon, 26 May 2026 22:30:00 GMT
 Keep-Alive: timeout=60
 Transfer-Encoding: chunked
 
 [
     {
-        "content": "Sure! Here's a random joke for you:\n\nWhy don't skeletons fight each other?  \nBecause they don’t have the guts! 😄",
+        "content": "Why don’t skeletons fight each other? Because they don’t have the guts!",
         "errorMessage": null,
-        "completionTokens": 29,
-        "modelName": "openai/gpt-4o-2024-11-20",
+        "completionTokens": 18,
+        "modelName": "qwen/qwen3.7-max",
         "promptTokens": 12,
-        "responseTime": "1s893ms",
+        "responseTime": "1s210ms",
         "success": true,
-        "totalTokens": 41
+        "totalTokens": 30
     },
     {
-        "content": "What do you call a fish wearing a bowtie? So-fish-ticated!",
-        "errorMessage": null,
-        "completionTokens": 0,
-        "modelName": "anthracite-org/magnum-v2-72b",
-        "promptTokens": 0,
-        "responseTime": "1s49ms",
-        "success": true,
-        "totalTokens": 0
-    },
-    {
-        "content": "Why don't scientists trust atoms? Because they make up everything.",
-        "errorMessage": null,
-        "completionTokens": 14,
-        "modelName": "qwen/qvq-72b-preview",
-        "promptTokens": 41,
-        "responseTime": "913ms",
-        "success": true,
-        "totalTokens": 55
-    },
-    {
-        "content": "Why don't eggs tell jokes? They'd crack each other up!",
-        "errorMessage": null,
-        "completionTokens": 15,
-        "modelName": "x-ai/grok-2-1212",
-        "promptTokens": 11,
-        "responseTime": "666ms",
-        "success": true,
-        "totalTokens": 26
-    },
-    {
-        "content": "Here's a random joke for you:\n\nWhy don't scientists trust atoms?\n\nBecause they make up everything!",
+        "content": "Here’s a random joke for you:\n\nWhy don’t scientists trust atoms?\n\nBecause they make up everything!",
         "errorMessage": null,
         "completionTokens": 27,
-        "modelName": "anthropic/claude-3.5-haiku-20241022",
+        "modelName": "anthropic/claude-haiku-latest",
         "promptTokens": 12,
         "responseTime": "1s390ms",
         "success": true,
         "totalTokens": 39
     },
     {
-        "content": "Here's a random joke for you:\n\n**Why don't sharks eat clowns?**\n\nBecause they taste funny![1]",
-        "errorMessage": null,
-        "completionTokens": 25,
-        "modelName": "perplexity/llama-3.1-sonar-huge-128k-online",
-        "promptTokens": 5,
-        "responseTime": "3s108ms",
-        "success": true,
-        "totalTokens": 30
-    },
-    {
-        "content": "Here's one:\n\nWhat do you call a fake noodle?\n\nAn impasta!",
+        "content": "Here’s one:\n\nWhat do you call a fake noodle?\n\nAn impasta!",
         "errorMessage": null,
         "completionTokens": 17,
         "modelName": "meta-llama/llama-3.3-70b-instruct",
@@ -112,54 +72,54 @@ Transfer-Encoding: chunked
         "totalTokens": 32
     },
     {
-        "content": "What do you call fake spaghetti? An impasta",
+        "content": "Sure! Here’s a random joke:\n\nWhy don’t skeletons fight each other? Because they don’t have the guts!",
         "errorMessage": null,
-        "completionTokens": 13,
-        "modelName": "mistralai/mistral-large-2411",
-        "promptTokens": 8,
-        "responseTime": "725ms",
-        "success": true,
-        "totalTokens": 21
-    },
-    {
-        "content": " Why did the chicken cross the playground? To get to the other slide!",
-        "errorMessage": null,
-        "completionTokens": 15,
-        "modelName": "pygmalionai/mythalion-13b",
-        "promptTokens": 30,
-        "responseTime": "5s288ms",
-        "success": true,
-        "totalTokens": 45
-    },
-    {
-        "content": "Sure! Here’s a random joke for you:\n\nWhy don’t skeletons fight each other?  \nBecause they don’t have the guts! 💀😂",
-        "errorMessage": null,
-        "completionTokens": 34,
+        "completionTokens": 24,
         "modelName": "deepseek/deepseek-chat",
         "promptTokens": 8,
         "responseTime": "4s477ms",
         "success": true,
-        "totalTokens": 42
+        "totalTokens": 32
     },
     {
-        "content": "Okay, here's a random one:\n\nWhy don't scientists trust atoms? \n\nBecause they make up everything!\n",
+        "content": "Sure! Here’s a random joke for you:\n\nWhy don’t skeletons fight each other?  \nBecause they don’t have the guts!",
         "errorMessage": null,
-        "completionTokens": 27,
-        "modelName": "google/gemini-2.0-flash-exp:free",
-        "promptTokens": 6,
-        "responseTime": "1s94ms",
+        "completionTokens": 29,
+        "modelName": "openai/gpt-4o-2024-11-20",
+        "promptTokens": 12,
+        "responseTime": "1s893ms",
         "success": true,
-        "totalTokens": 33
+        "totalTokens": 41
     },
     {
-        "content": "Of course! Here's a light-hearted joke for you:\n\nWhy did the scarecrow win an award?\n\nBecause he was outstanding in his field! \n\nHope that brought a smile to your face!",
+        "content": "Of course! Here’s a light-hearted joke for you:\n\nWhy did the scarecrow win an award?\n\nBecause he was outstanding in his field!",
         "errorMessage": null,
-        "completionTokens": 41,
+        "completionTokens": 34,
         "modelName": "amazon/nova-pro-v1",
         "promptTokens": 5,
         "responseTime": "1s83ms",
         "success": true,
-        "totalTokens": 46
+        "totalTokens": 39
+    },
+    {
+        "content": "Okay, here’s a random one:\n\nWhy don’t scientists trust atoms?\n\nBecause they make up everything!",
+        "errorMessage": null,
+        "completionTokens": 22,
+        "modelName": "google/gemini-flash-latest",
+        "promptTokens": 6,
+        "responseTime": "988ms",
+        "success": true,
+        "totalTokens": 28
+    },
+    {
+        "content": "What do you call fake spaghetti? An impasta!",
+        "errorMessage": null,
+        "completionTokens": 11,
+        "modelName": "mistralai/ministral-3b-2512",
+        "promptTokens": 8,
+        "responseTime": "612ms",
+        "success": true,
+        "totalTokens": 19
     }
 ]
 
