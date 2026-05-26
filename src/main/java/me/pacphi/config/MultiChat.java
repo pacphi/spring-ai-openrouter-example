@@ -14,7 +14,6 @@ import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
 
 import java.time.Duration;
 import java.util.Map;
@@ -36,13 +35,15 @@ public class MultiChat {
             apiKey = chatProperties.getApiKey();
         }
 
-        // Both sync and async clients must be provided; if only sync is given, OpenAiChatModel
-        // internally calls OpenAiSetup.setupAsyncClient() which requires credentials from
-        // Spring properties — bypassing the programmatic key we set here.
+        // Do NOT set Accept-Encoding explicitly: OkHttp only auto-decompresses gzip when it
+        // added the header itself. Setting it manually delivers raw gzip bytes to the SDK's
+        // JSON parser, causing "Error reading response" on every compressed response.
+        // Both sync and async clients must be provided; supplying only sync causes OpenAiChatModel
+        // to call OpenAiSetup.setupAsyncClient() which reads credentials from Spring properties,
+        // bypassing the programmatic API key set here.
         OpenAIClient openAiClient = OpenAIOkHttpClient.builder()
                 .baseUrl(baseUrl)
                 .apiKey(apiKey)
-                .putHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate")
                 .timeout(Duration.ofMinutes(10))
                 .maxRetries(connectionProperties.getMaxRetries())
                 .build();
@@ -50,7 +51,6 @@ public class MultiChat {
         OpenAIClientAsync openAiClientAsync = OpenAIOkHttpClientAsync.builder()
                 .baseUrl(baseUrl)
                 .apiKey(apiKey)
-                .putHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate")
                 .timeout(Duration.ofMinutes(10))
                 .maxRetries(connectionProperties.getMaxRetries())
                 .build();

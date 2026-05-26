@@ -12,18 +12,14 @@ spring:
       chat:
         options:
           models:
-            - google/gemini-2.0-flash-exp:free
+            - qwen/qwen3.7-max
+            - ~anthropic/claude-haiku-latest
             - meta-llama/llama-3.3-70b-instruct
             - deepseek/deepseek-chat
-            - qwen/qvq-72b-preview
             - openai/gpt-4o-2024-11-20
             - amazon/nova-pro-v1
-            - mistralai/mistral-large-2411
-            - anthropic/claude-3.5-haiku-20241022
-            - perplexity/llama-3.1-sonar-huge-128k-online
-            - pygmalionai/mythalion-13b
-            - anthracite-org/magnum-v2-72b
-            - x-ai/grok-2-1212
+            - ~google/gemini-flash-latest
+            - mistralai/ministral-3b-2512
 
     openai:
       base-url: ${OPENAI_BASE_URL:https://openrouter.ai/api/v1}
