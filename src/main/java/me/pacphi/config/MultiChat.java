@@ -1,24 +1,20 @@
 package me.pacphi.config;
 
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
 import io.micrometer.observation.ObservationRegistry;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
-import org.springframework.ai.model.SimpleApiKey;
 import org.springframework.ai.model.openai.autoconfigure.OpenAiChatProperties;
-import org.springframework.ai.model.openai.autoconfigure.OpenAiConnectionProperties;
-import org.springframework.ai.model.tool.DefaultToolCallingManager;
+import org.springframework.ai.model.openai.autoconfigure.OpenAiCommonProperties;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
-import org.springframework.ai.openai.api.OpenAiApi;
-import org.springframework.ai.retry.RetryUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
-import org.springframework.retry.support.RetryTemplate;
-import org.springframework.web.client.RestClient;
-import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.Duration;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -27,33 +23,24 @@ public class MultiChat {
 
     @Bean
     public Map<String, ChatClient> chatClients(
-            OpenAiConnectionProperties connectionProperties,
+            OpenAiCommonProperties connectionProperties,
             OpenAiChatProperties chatProperties,
-            WebClient.Builder webClientBuilder,
-            RetryTemplate retryTemplate,
             MultiChatProperties multiChatProperties
     ) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate");
-
-        RestClient.Builder restClientBuilder = RestClient.builder()
-                .defaultHeaders(h -> h.addAll(headers));
+        String baseUrl = chatProperties.getBaseUrl() != null ? chatProperties.getBaseUrl() : connectionProperties.getBaseUrl();
 
         String apiKey = connectionProperties.getApiKey();
         if (connectionProperties.getApiKey().equalsIgnoreCase("redundant") && StringUtils.isNotBlank(chatProperties.getApiKey())) {
             apiKey = chatProperties.getApiKey();
         }
 
-        OpenAiApi openAiApi = new OpenAiApi(
-                chatProperties.getBaseUrl() != null ? chatProperties.getBaseUrl() : connectionProperties.getBaseUrl(),
-                new SimpleApiKey(apiKey),
-                headers,
-                "/v1/chat/completions",
-                "/v1/embeddings",
-                restClientBuilder,
-                webClientBuilder,
-                RetryUtils.DEFAULT_RESPONSE_ERROR_HANDLER
-        );
+        OpenAIClient openAiClient = OpenAIOkHttpClient.builder()
+                .baseUrl(baseUrl)
+                .apiKey(apiKey)
+                .putHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate")
+                .timeout(Duration.ofMinutes(10))
+                .maxRetries(connectionProperties.getMaxRetries())
+                .build();
 
         ObservationRegistry observationRegistry = ObservationRegistry.NOOP;
 
@@ -61,19 +48,13 @@ public class MultiChat {
                 Collectors.toMap(
                         model -> model,
                         model -> {
-                            OpenAiChatOptions chatOptions = OpenAiChatOptions.fromOptions(chatProperties.getOptions());
-                            chatOptions.setModel(model);
-                            OpenAiChatModel openAiChatModel = new OpenAiChatModel(
-                                    openAiApi,
-                                    chatOptions,
-                                    DefaultToolCallingManager.builder().observationRegistry(observationRegistry).build(),
-                                    retryTemplate,
-                                    observationRegistry
-                            );
-                            // Create ChatClient with similar configuration to original service
+                            OpenAiChatModel openAiChatModel = OpenAiChatModel.builder()
+                                    .openAiClient(openAiClient)
+                                    .options(OpenAiChatOptions.builder().model(model).build())
+                                    .observationRegistry(observationRegistry)
+                                    .build();
                             return ChatClient.builder(openAiChatModel)
-                                    .defaultAdvisors(
-                                            new SimpleLoggerAdvisor())
+                                    .defaultAdvisors(new SimpleLoggerAdvisor())
                                     .build();
                         }
                 )

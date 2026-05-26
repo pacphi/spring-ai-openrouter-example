@@ -1,8 +1,8 @@
 plugins {
 	id 'java'
-	id 'org.cyclonedx.bom' version '3.1.0'
-	id 'com.gorylenko.gradle-git-properties' version '2.5.4'
-	id 'org.springframework.boot' version '4.0.0'
+	id 'org.cyclonedx.bom' version '3.2.3'
+	id 'com.gorylenko.gradle-git-properties' version '2.5.7'
+	id 'org.springframework.boot' version '4.1.0-RC1'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'org.springdoc.openapi-gradle-plugin' version '1.9.0'
 }
@@ -11,17 +11,17 @@ group = 'me.pacphi'
 
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
 }
 
 ext {
-	set('springAiVersion', "1.0.0")
+	set('springAiVersion', "2.0.0-M7")
 }
 
 dependencies {
@@ -29,11 +29,11 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-validation')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.ai:spring-ai-starter-model-openai'
-	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-actuator:1.2.1'
-	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-resilience4j:1.2.1'
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0'
+	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-actuator:2.0.1'
+	implementation 'io.github.springboot-addons:spring-boot-starter-httpclient5-resilience4j:2.0.1'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.assertj:assertj-core:3.27.6'
+	testImplementation 'org.assertj:assertj-core:3.27.7'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

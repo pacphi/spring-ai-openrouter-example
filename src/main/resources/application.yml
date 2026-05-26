@@ -6,6 +6,8 @@ spring:
     import: "${SPRING_CONFIG_IMPORT:optional:file:./config/creds.yml}"
 
   ai:
+    model:
+      chat: openai
     openrouter:
       chat:
         options:
