@@ -1,7 +1,9 @@
 package me.pacphi.config;
 
 import com.openai.client.OpenAIClient;
+import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
 import io.micrometer.observation.ObservationRegistry;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ai.chat.client.ChatClient;
@@ -34,7 +36,18 @@ public class MultiChat {
             apiKey = chatProperties.getApiKey();
         }
 
+        // Both sync and async clients must be provided; if only sync is given, OpenAiChatModel
+        // internally calls OpenAiSetup.setupAsyncClient() which requires credentials from
+        // Spring properties — bypassing the programmatic key we set here.
         OpenAIClient openAiClient = OpenAIOkHttpClient.builder()
+                .baseUrl(baseUrl)
+                .apiKey(apiKey)
+                .putHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate")
+                .timeout(Duration.ofMinutes(10))
+                .maxRetries(connectionProperties.getMaxRetries())
+                .build();
+
+        OpenAIClientAsync openAiClientAsync = OpenAIOkHttpClientAsync.builder()
                 .baseUrl(baseUrl)
                 .apiKey(apiKey)
                 .putHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate")
@@ -50,6 +63,7 @@ public class MultiChat {
                         model -> {
                             OpenAiChatModel openAiChatModel = OpenAiChatModel.builder()
                                     .openAiClient(openAiClient)
+                                    .openAiClientAsync(openAiClientAsync)
                                     .options(OpenAiChatOptions.builder().model(model).build())
                                     .observationRegistry(observationRegistry)
                                     .build();
